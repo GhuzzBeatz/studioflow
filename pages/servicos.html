@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="page-title">Serviços</div>
+  <div class="page-sub">Cadastre os serviços oferecidos pelo seu negócio</div>
+
+  <div class="form-card">
+    <h3 id="formTitulo">Novo Serviço</h3>
+    <div class="form-row">
+      <div class="form-group flex2">
+        <label class="form-label">Nome do Serviço *</label>
+        <input type="text" id="nomeServico" placeholder="Ex: Corte masculino, Coloração, Tatuagem P...">
+      </div>
+      <div class="form-group flex1">
+        <label class="form-label">Valor (R$) *</label>
+        <input type="number" id="valorServico" placeholder="0,00" min="0" step="0.01">
+      </div>
+      <div class="form-group" style="justify-content:flex-end">
+        <label class="form-label">&nbsp;</label>
+        <div style="display:flex;gap:8px">
+          <input type="hidden" id="editandoId">
+          <button class="btn btn-primary" id="btnSalvar" onclick="salvarServico()">+ Adicionar</button>
+          <button class="btn" id="btnCancelar" onclick="cancelarEdicao()"
+            style="display:none;background:#2a2a2a;color:#888;border:1px solid #333">Cancelar</button>
+        </div>
+      </div>
+    </div>
+    <div class="aviso aviso-erro" id="avisoErro"></div>
+    <div class="aviso aviso-ok"  id="avisoOk"></div>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-top">
+      <span class="table-title">Serviços Cadastrados</span>
+      <span class="table-count" id="countServicos"></span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Serviço</th>
+          <th style="text-align:right">Valor</th>
+          <th style="text-align:center">Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaServicos">
+        <tr><td colspan="3" class="empty">Nenhum serviço cadastrado.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<script src="../js/servicos.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="page-title">Clientes</div>
+  <div class="page-sub">Gerencie a sua base de clientes</div>
+
+  <div class="form-card">
+    <h3 id="formTitulo">Novo Cliente</h3>
+    <div class="form-row">
+      <div class="form-group flex2">
+        <label class="form-label">Nome *</label>
+        <input type="text" id="nome" placeholder="Nome completo do cliente">
+      </div>
+      <div class="form-group flex1">
+        <label class="form-label">Telefone</label>
+        <input type="text" id="telefone" placeholder="(11) 99999-9999">
+      </div>
+      <div class="form-group flex1">
+        <label class="form-label">CPF <span style="color:#555;font-weight:400">(opcional)</span></label>
+        <input type="text" id="cpf" placeholder="000.000.000-00">
+      </div>
+    </div>
+    <div class="form-row" style="margin-top:12px">
+      <div class="form-group" style="flex:1">
+        <label class="form-label">Observações</label>
+        <textarea id="obs" placeholder="Alergias, preferências, histórico..."></textarea>
+      </div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:10px">
+      <input type="hidden" id="editandoId">
+      <button class="btn btn-primary" id="btnSalvar" onclick="salvarCliente()">+ Salvar Cliente</button>
+      <button class="btn" id="btnCancelar" onclick="cancelarEdicao()"
+        style="display:none;background:#2a2a2a;color:#888;border:1px solid #333">Cancelar</button>
+    </div>
+    <div class="aviso aviso-erro" id="avisoErro"></div>
+    <div class="aviso aviso-ok"  id="avisoOk"></div>
+  </div>
+
+  <div class="table-wrap">
+    <div class="table-top">
+      <span class="table-title">Clientes Cadastrados</span>
+      <div style="display:flex;align-items:center;gap:12px">
+        <input class="search-input" placeholder="🔍 Buscar por nome ou telefone..." id="busca" oninput="renderClientes()">
+        <span class="table-count" id="countClientes"></span>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th><th>Telefone</th><th>CPF</th><th>Observações</th>
+          <th style="text-align:center">Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaClientes">
+        <tr><td colspan="5" class="empty">Nenhum cliente cadastrado.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<script src="../js/clientes.js"></script>
+</body>
+</html>

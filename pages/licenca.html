@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    body { background:#0d0d0d; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; }
+    .lic-wrap { width:420px; padding:40px; background:#1A1A1A; border:1px solid #2A2A2A; border-radius:18px; box-shadow:0 30px 80px rgba(0,0,0,0.7); }
+    .lic-logo { display:flex; align-items:center; gap:14px; margin-bottom:32px; }
+    .lic-logo img { width:52px; height:52px; border-radius:12px; }
+    .lic-logo-name { font-size:26px; font-weight:900; color:#F2F2F2; }
+    .lic-logo-sub { font-size:12px; color:#555; margin-top:2px; }
+    .lic-title { font-size:15px; font-weight:700; color:#F2F2F2; margin-bottom:6px; }
+    .lic-sub { font-size:12px; color:#666; margin-bottom:24px; line-height:1.6; }
+    .lic-input { width:100%; background:#111; border:2px solid #2A2A2A; border-radius:10px; padding:14px 16px; color:#F2F2F2; font-size:16px; font-weight:700; letter-spacing:0.1em; outline:none; text-transform:uppercase; font-family:monospace; transition:border-color .2s; }
+    .lic-input:focus { border-color:#4a90d9; }
+    .lic-btn { width:100%; margin-top:16px; padding:14px; background:#1282C9; border:none; border-radius:10px; color:#fff; font-size:15px; font-weight:800; cursor:pointer; transition:background .2s; }
+    .lic-btn:hover { background:#0f6ea8; }
+    .lic-erro { background:rgba(224,20,45,0.1); border:1px solid rgba(224,20,45,0.3); color:#E0142D; border-radius:8px; padding:10px 14px; font-size:13px; font-weight:600; margin-top:12px; display:none; }
+    .lic-footer { text-align:center; margin-top:24px; font-size:11px; color:#444; }
+    .lic-footer a { color:#4a90d9; text-decoration:none; }
+  </style>
+</head>
+<body>
+<div class="lic-wrap">
+  <div class="lic-logo">
+    <img src="../logo.png" alt="StudioFlow">
+    <div>
+      <div class="lic-logo-name">Studio<span style="color:#4a90d9">Flow</span></div>
+      <div class="lic-logo-sub">Ativação de Licença</div>
+    </div>
+  </div>
+
+  <div class="lic-title">Insira sua Chave de Licença</div>
+  <div class="lic-sub">
+    Após a compra, a chave foi enviada via WhatsApp.<br>
+    Formato: <span style="font-family:monospace;color:#4a90d9">STFLOW-0000-0000-0000</span>
+  </div>
+
+  <input class="lic-input" id="inputChave" maxlength="21"
+    placeholder="STFLOW-XXXX-XXXX-XXXX"
+    oninput="formatarChave(this)"
+    onkeydown="if(event.key==='Enter')ativar()">
+
+  <button class="lic-btn" onclick="ativar()">🔑 Ativar Licença</button>
+  <div class="lic-erro" id="erro">Chave inválida. Verifique e tente novamente.</div>
+
+  <div class="lic-footer">
+    Problemas? Fale com a GHZ Plugin:<br>
+    <a href="#">WhatsApp (11) 94898-1459</a> · GHZPLUGIN@GMAIL.COM
+  </div>
+</div>
+
+<script src="../js/licenca.js"></script>
+<script>
+function formatarChave(input) {
+  let v = input.value.toUpperCase().replace(/[^A-Z0-9]/g, '')
+  // Preserva o prefixo STFLOW
+  let result = ''
+  if (v.length <= 6)        result = v
+  else if (v.length <= 10)  result = v.slice(0,6) + '-' + v.slice(6)
+  else if (v.length <= 14)  result = v.slice(0,6) + '-' + v.slice(6,10) + '-' + v.slice(10)
+  else                      result = v.slice(0,6) + '-' + v.slice(6,10) + '-' + v.slice(10,14) + '-' + v.slice(14,18)
+  input.value = result
+}
+
+function ativar() {
+  const chave = document.getElementById('inputChave').value.trim()
+  const erro  = document.getElementById('erro')
+  if (validarChave(chave)) {
+    salvarLicenca(chave)
+    // Redireciona para o app principal
+    window.location.href = '../index.html'
+  } else {
+    erro.style.display = 'block'
+    document.getElementById('inputChave').style.borderColor = '#E0142D'
+    setTimeout(() => {
+      erro.style.display = 'none'
+      document.getElementById('inputChave').style.borderColor = ''
+    }, 4000)
+  }
+}
+</script>
+</body>
+</html>

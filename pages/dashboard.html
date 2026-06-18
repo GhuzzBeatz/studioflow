@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="page-title">Dashboard</div>
+  <div class="page-sub">Visão geral do seu negócio hoje</div>
+
+  <!-- KPIs -->
+  <div class="dash-grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="dash-card">
+      <div>
+        <div class="dash-card-label">Já Atendidos</div>
+        <div class="dash-card-val" id="totalAtendidos" style="color:#00c878">0</div>
+        <div class="dash-card-sub">horário já passou</div>
+      </div>
+      <div class="dash-card-icon icon-green">✅</div>
+    </div>
+    <div class="dash-card">
+      <div>
+        <div class="dash-card-label">Serão Atendidos</div>
+        <div class="dash-card-val" id="totalPendentes" style="color:#4a90d9">0</div>
+        <div class="dash-card-sub">agendados no futuro</div>
+      </div>
+      <div class="dash-card-icon icon-blue">📅</div>
+    </div>
+    <div class="dash-card">
+      <div>
+        <div class="dash-card-label">Clientes</div>
+        <div class="dash-card-val" id="totalClientes">0</div>
+        <div class="dash-card-sub">cadastrados</div>
+      </div>
+      <div class="dash-card-icon icon-orange">👥</div>
+    </div>
+    <div class="dash-card">
+      <div>
+        <div class="dash-card-label">Faturamento Realizado</div>
+        <div class="dash-card-val" id="faturamento" style="font-size:18px">R$ 0,00</div>
+        <div class="dash-card-sub">somente atendidos</div>
+      </div>
+      <div class="dash-card-icon icon-purple">💰</div>
+    </div>
+  </div>
+
+  <!-- Próximos atendimentos -->
+  <div class="section-card" style="margin-bottom:20px">
+    <div class="section-header" style="display:flex;justify-content:space-between;align-items:center">
+      <span>📅 Próximos Agendamentos</span>
+      <span style="font-size:11px;color:#555">agendamentos futuros</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th><th>Horário</th><th>Cliente</th><th>Serviço</th>
+          <th style="text-align:right">Valor</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaProximos">
+        <tr><td colspan="5" class="empty">Nenhum agendamento futuro.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Últimos atendidos -->
+  <div class="section-card">
+    <div class="section-header" style="display:flex;justify-content:space-between;align-items:center">
+      <span>✅ Últimos Atendidos</span>
+      <span style="font-size:11px;color:#555">horário já passou</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th><th>Horário</th><th>Cliente</th><th>Serviço</th>
+          <th style="text-align:right">Valor</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaAtendimentos">
+        <tr><td colspan="5" class="empty">Nenhum atendimento realizado ainda.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<script src="../js/dashboard.js"></script>
+</body>
+</html>
