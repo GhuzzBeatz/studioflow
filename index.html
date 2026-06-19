@@ -10,10 +10,21 @@
 <!-- Verificação de licença ANTES de mostrar o app -->
 <script src="js/licenca.js"></script>
 <script>
-  if (!licencaAtiva()) {
-    // Redireciona para tela de ativação
-    document.write('<meta http-equiv="refresh" content="0;url=pages/licenca.html">')
-  }
+  ;(async function () {
+    if (ghzLicense.sessionValid()) return
+    if (ghzLicense.cacheActive()) {
+      ghzLicense.markSession()
+      ghzLicense.validateOnline().catch(() => {})
+      return
+    }
+    try {
+      const r = await ghzLicense.validateOnline()
+      if (r?.ok) { ghzLicense.markSession(); return }
+    } catch (e) {
+      if (ghzLicense.cacheActive()) { ghzLicense.markSession(); return }
+    }
+    window.location.replace('pages/licenca.html')
+  })()
 </script>
 
 <div class="container">
@@ -48,6 +59,9 @@
       </button>
       <button class="nav-btn" onclick="abrirPagina('pages/sobre.html', this)">
         <span class="nav-icon">ℹ️</span><span class="nav-label">Sobre</span>
+      </button>
+      <button class="nav-btn" onclick="abrirPagina('pages/atualizacao.html', this)">
+        <span class="nav-icon">🔄</span><span class="nav-label">Atualização</span>
       </button>
     </nav>
 

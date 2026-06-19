@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const fs   = require('fs')
 
@@ -46,6 +46,19 @@ function createWindow() {
   win.loadFile('index.html')
   win.on('page-title-updated', (e) => e.preventDefault())
 }
+
+function getDataDir() {
+  if (app.isPackaged) {
+    return path.join(app.getPath('userData'), 'data')
+  }
+  return path.join(__dirname, 'data')
+}
+
+require('./js/ghz-backend')({
+  app, ipcMain, getDataDir,
+  appId: 'studioflow',
+  manifestUrl: 'https://raw.githubusercontent.com/GhuzzBeatz/studioflow/master/update-manifest.json'
+})
 
 app.whenReady().then(createWindow)
 app.on('window-all-closed', () => { if (process.platform !== 'darwin') app.quit() })
