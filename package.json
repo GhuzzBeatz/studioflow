@@ -1,6 +1,6 @@
 {
   "name": "studioflow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sistema de Gestao StudioFlow",
   "main": "main.js",
   "author": "GHZ Plugin",
@@ -23,11 +23,20 @@
       {
         "from": "data/",
         "to": "data/",
-        "filter": ["**/*"]
+        "filter": [
+          "**/*"
+        ]
       }
     ],
     "win": {
-      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
       "icon": "logo.png"
     },
     "nsis": {
