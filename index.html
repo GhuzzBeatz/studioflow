@@ -7,26 +7,6 @@
 </head>
 <body>
 
-<!-- Verificação de licença ANTES de mostrar o app -->
-<script src="js/licenca.js"></script>
-<script>
-  ;(async function () {
-    if (ghzLicense.sessionValid()) return
-    if (ghzLicense.cacheActive()) {
-      ghzLicense.markSession()
-      ghzLicense.validateOnline().catch(() => {})
-      return
-    }
-    try {
-      const r = await ghzLicense.validateOnline()
-      if (r?.ok) { ghzLicense.markSession(); return }
-    } catch (e) {
-      if (ghzLicense.cacheActive()) { ghzLicense.markSession(); return }
-    }
-    window.location.replace('pages/licenca.html')
-  })()
-</script>
-
 <div class="container">
   <div class="menu">
     <div class="menu-logo">
@@ -98,5 +78,6 @@
   atualizarBadges()
   setInterval(atualizarBadges, 3000)
 </script>
+<script src="js/ghz-support.js" data-target=".menu-footer" data-accent="#4a90d9"></script>
 </body>
 </html>
